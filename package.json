@@ -10,15 +10,15 @@
     "release": "npm run lint && gulp release"
   },
   "engines": {
-    "node": ">= 5.1",
-    "npm": ">= 2.1"
+    "node": ">= 5.1.0",
+    "npm": ">= 3.3.12"
   },
   "repository": {
     "type": "git",
     "url": "https://piscis@github.com/piscis/gdrive-filedrop-server.git"
   },
   "author": "Alexander Pirsig <self@pirsig.net>",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/piscis/gdrive-filedrop-server/issues"
   },
