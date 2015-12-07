@@ -1,5 +1,5 @@
 {
-  "name": "gdrive-filedrop-serve",
+  "name": "gdrive-filedrop-server",
   "version": "0.1.0",
   "private": true,
   "description": "Google Drive filedrop server",
