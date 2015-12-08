@@ -4,6 +4,7 @@ import config from './../services/config';
 import path from 'path';
 import fs from 'fs';
 import logger from './../services/logger';
+import uuid from 'node-uuid';
 
 export default (app) => {
 
@@ -14,13 +15,15 @@ export default (app) => {
 
     const topic = req.body.description;
     const files = req.files;
+    const group = req.body.group || uuid.v4();
+
     const unlink = (files)=>{
       files.forEach((file)=>{
         fs.unlink(path.resolve(file.path));
       });
     };
 
-    gdrive(topic, files).then(function(data) {
+    gdrive(topic, files, group).then(function(data) {
       res.status(200).send({success: true});
       unlink(files);
     }).catch(function(e) {
