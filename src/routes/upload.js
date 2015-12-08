@@ -13,7 +13,7 @@ export default (app) => {
 
   app.post('/files/upload', upload.array('files', 600), function(req, res, next) {
 
-    const topic = req.body.description;
+    const topic = `${req.body.description} / ${req.body.name || ''}`;
     const files = req.files;
     const group = req.body.group || uuid.v4();
 
