@@ -19,6 +19,24 @@
       "token_uri": "",
       "auth_provider_x509_cert_url": "",
       "client_x509_cert_url": ""
+    },
+    "mailer": {
+      "transport": {
+        "host": "",
+        "port": 25,
+        "secure": false,
+        "auth": {
+          "user": "",
+          "pass": ""
+        },
+        "maxConnections": 1
+      },
+      "formOptions": {
+        "from": "",
+        "to": "",
+        "subject": "",
+        "text": ""
+      }
     }
   },
   "development": {

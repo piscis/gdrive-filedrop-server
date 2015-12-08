@@ -2,8 +2,14 @@ import express  from 'express';
 import routes from './routes/index';
 import config from './services/config';
 import logger from './services/logger';
+import bodyParser from 'body-parser';
 
 const app = express();
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 
 // Enable cors header
 app.use(function(req, res, next) {

@@ -1,6 +1,7 @@
 import multer from 'multer';
 import gdrive from './../services/gdrive';
 import config from './../services/config';
+import mailer from './../services/mailer';
 import path from 'path';
 import fs from 'fs';
 import logger from './../services/logger';
@@ -13,7 +14,7 @@ export default (app) => {
 
   app.post('/files/upload', upload.array('files', 600), function(req, res, next) {
 
-    const topic = `${req.body.description} / ${req.body.name || ''}`;
+    const topic = `${req.body.description || '' } / ${req.body.name || ''}`;
     const files = req.files;
     const group = req.body.group || uuid.v4();
 
@@ -26,11 +27,23 @@ export default (app) => {
     gdrive(topic, files, group).then(function(data) {
       res.status(200).send({success: true});
       unlink(files);
+
     }).catch(function(e) {
       logger.error('Upload failed', e);
       next();
       unlink(files);
     });
 
+  });
+
+  app.post('/files/ready', function(req, res) {
+
+    const details = {
+      description: (req.body.description || ''),
+      name: (req.body.name || '')
+    };
+
+    mailer.notifyNewUpload(details);
+    res.status(200).send({ success: true });
   });
 };

@@ -15,4 +15,5 @@ build
 .DS_Store
 keystore.json
 keystore.config.json
+mailer.config.json
 uploads
