@@ -21,7 +21,9 @@ app.use(function(req, res, next) {
 // Mount routes
 routes(app);
 
-const {port, host} = config.server;
+const { host } = config.server;
+const port = (process.env.PORT || config.server.port);
+
 const server = app.listen(port, host, () => {
   const { address, port } = server.address();
   logger.info('Server listening at http://%s:%s', address, port);
